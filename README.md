@@ -5,7 +5,7 @@
 ---
 
 🚀 **Live Demo:** https://retail-dataanalytics-dashboard-jh4vqfpm2jjfnnknneszz2.streamlit.app/
-📂 **GitHub Repo:** https://github.com/Surendra1028/Retail-Analytics-Dashboard
+📂 **GitHub Repo:** https://github.com/Surendra1028/Retail-DataAnalytics-Dashboard.git
 
 
 ---
