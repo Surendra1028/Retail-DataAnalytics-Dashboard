@@ -1,192 +1,147 @@
-# 📊 Retail Analytics Dashboard
+# 📊 Retail & E-commerce Analytics Dashboard
 
-> A professional, full-stack data analytics project built on a **star-schema data warehouse** with 1M+ retail transactions. Features interactive Streamlit dashboard, customer segmentation (RFM), ML clustering, and comprehensive EDA.
-
-![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.30+-FF4B4B?logo=streamlit&logoColor=white)
-![Plotly](https://img.shields.io/badge/Plotly-5.18+-3F4F75?logo=plotly&logoColor=white)
-![Pandas](https://img.shields.io/badge/Pandas-2.0+-150458?logo=pandas&logoColor=white)
+> 🚀 End-to-End Data Analytics | Business Intelligence | Machine Learning Project
 
 ---
 
+🚀 **Live Demo:** https://retail-dataanalytics-dashboard-jh4vqfpm2jjfnnknneszz2.streamlit.app/
+📂 **GitHub Repo:** https://github.com/Surendra1028/Retail-Analytics-Dashboard
+
+
+---
+
+
 ## 🎯 Project Overview
 
-This project simulates a **real-world retail analytics system** using relational data modeled as a star schema. It integrates 6 datasets (4 dimension tables + 1 fact table + 1 time dimension) to build a unified analytics layer and presents business insights through an interactive Streamlit dashboard.
+This project simulates a **real-world retail / e-commerce analytics system** built on a **star-schema data warehouse** with over **1 million transactions**.
 
-### Key Features
+It demonstrates a complete data analytics pipeline:
 
-- **Data Integration**: Star-schema merge of 6 relational datasets (1M+ transactions)
-- **Feature Engineering**: Revenue, Profit (margin-based), CLV, temporal features
-- **Exploratory Data Analysis**: Sales trends, product rankings, category analysis, regional performance
-- **Customer Analytics**: RFM Segmentation, repeat vs new classification, high-value customer identification
-- **Machine Learning**: KMeans clustering on RFM features, linear sales prediction
-- **Premium Dashboard**: Dark glassmorphism theme, dynamic filters, drill-down analysis
+* 🏗️ Data Engineering (data integration & feature engineering)
+* 📊 Business Intelligence (interactive dashboard)
+* 👥 Customer Analytics (RFM segmentation)
+* 🤖 Machine Learning (clustering & forecasting)
+
+---
+
+## 🔥 Key Highlights
+
+* ✅ Star-schema data warehouse (6 datasets integrated)
+* ✅ 1M+ transaction-level data processing
+* ✅ Interactive dashboard using Streamlit & Plotly
+* ✅ Customer segmentation using RFM analysis
+* ✅ KMeans clustering for customer grouping
+* ✅ Sales forecasting using Linear Regression
+* ✅ Real-world business insights generation
+
+---
+
+## 🏗️ Architecture
+
+```text
+Raw Data → Data Merge → Feature Engineering → Analytics → Dashboard → Insights
+```
+
+---
+
+## 📊 Features
+
+### 📈 Sales Analytics
+
+* Monthly & yearly sales trends
+* Top-selling products analysis
+* Category-wise revenue distribution
+* Sales heatmap (Month × Year)
+
+### 👥 Customer Analytics
+
+* RFM Segmentation (Champions, Loyal, At Risk, Lost)
+* Repeat vs New customers
+* High-value customers (CLV)
+
+### 🌍 Regional Insights
+
+* Region-wise revenue comparison
+* District-level drill-down analysis
+
+### 🤖 Machine Learning
+
+* Customer clustering using KMeans
+* Sales forecasting (next 6 months)
 
 ---
 
 ## 📂 Dataset Description
 
-| Dataset | Rows | Description |
-|---------|------|-------------|
-| `customer_dim.csv` | 9,191 | Customer ID, name, contact, NID |
-| `item_dim.csv` | 264 | Product info, category, price, supplier |
-| `store_dim.csv` | 726 | Store location (division, district, upazila) |
-| `Trans_dim.csv` | 39 | Payment type (cash/card), bank name |
-| `fact_table.csv` | 1,000,000 | Transaction facts (quantity, price, totals) |
-| `time_dim.csv` | ~100K+ | Date/time dimension (date, hour, month, year) |
-
-### Star Schema
-
-```
-                    ┌──────────────┐
-                    │  time_dim    │
-                    └──────┬───────┘
-                           │ time_key
-┌──────────────┐   ┌──────┴───────┐   ┌──────────────┐
-│ customer_dim │───│  fact_table  │───│   item_dim   │
-└──────────────┘   └──────┬───────┘   └──────────────┘
-       coustomer_key      │ store_key, payment_key
-                    ┌─────┴────────┐
-               ┌────┴─────┐  ┌────┴─────┐
-               │ store_dim│  │Trans_dim │
-               └──────────┘  └──────────┘
-```
+| Dataset      | Description                 |
+| ------------ | --------------------------- |
+| customer_dim | Customer information        |
+| item_dim     | Product details             |
+| store_dim    | Store locations             |
+| Trans_dim    | Payment methods             |
+| time_dim     | Date & time data            |
+| fact_table   | Transaction data (1M+ rows) |
 
 ---
 
-## 🚀 Quick Start
+## ⚙️ Technologies Used
 
-### 1. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 2. Run the Dashboard
-
-```bash
-streamlit run app/app.py
-```
-
-### 3. Run EDA Script (Optional)
-
-```bash
-python notebooks/eda.py
-```
-
----
-
-## 📁 Project Structure
-
-```
-project/
-├── datasets/              # Raw CSV data files
-│   ├── customer_dim.csv
-│   ├── item_dim.csv
-│   ├── store_dim.csv
-│   ├── Trans_dim.csv
-│   ├── fact_table.csv
-│   └── time_dim.csv
-├── notebooks/
-│   └── eda.py             # Exploratory data analysis script
-├── app/
-│   └── app.py             # Streamlit dashboard (main app)
-├── src/
-│   ├── __init__.py
-│   ├── data_merge.py      # Data integration & feature engineering
-│   └── analysis.py        # Analytics & ML functions
-├── requirements.txt
-└── README.md
-```
-
----
-
-## 🖥️ Dashboard Features
-
-### Sidebar Filters
-- 📅 Date range picker
-- 🌍 Region (Division) multi-select
-- 🏪 District multi-select (dynamic, filtered by region)
-- 📦 Category multi-select
-- 💳 Payment type multi-select
-
-### KPI Cards
-- 💰 Total Revenue with Profit delta
-- 📦 Total Orders with Items count
-- 👥 Unique Customers with Best Region
-- 📊 Average Order Value with Top Category
-
-### Charts & Visualizations
-- 📈 **Line Chart** — Monthly/yearly sales trend with revenue & profit
-- 📊 **Bar Chart** — Top N products by revenue
-- 🥧 **Donut Chart** — Category-wise revenue distribution
-- 🗓️ **Heatmap** — Sales by month × year
-- 🎯 **Scatter Plot** — RFM customer segments
-- 🧩 **3D Scatter** — KMeans customer clusters
-- 📈 **Forecast Chart** — 6-month sales prediction
-
-### Advanced Features
-- Dynamic filtering across all charts
-- Region → District drill-down analysis
-- Downloadable filtered data (CSV)
-- Expandable detailed data tables
+* 🐍 Python
+* 📊 Pandas
+* 🔢 NumPy
+* 📈 Plotly
+* 🖥️ Streamlit
+* 🤖 Scikit-learn
 
 ---
 
 ## 🔧 Feature Engineering
 
-| Feature | Formula / Method |
-|---------|-----------------|
-| Revenue | `total_price` from fact table |
-| Profit | `revenue × margin` (15% Food, 20% Beverage, 10% Other) |
-| CLV | Sum of all revenue per customer |
-| Month/Year/Quarter | Extracted from parsed transaction date |
-| Transaction Count | Unique transactions per customer |
-| RFM Scores | Quartile-based (1–4) for Recency, Frequency, Monetary |
-| Customer Segments | Champions, Loyal, At Risk, Lost |
+* Revenue & profit calculation
+* Customer Lifetime Value (CLV)
+* Time-based features (month, year, weekday)
+* Transaction frequency analysis
+* Margin-based profit estimation
 
 ---
 
 ## 👥 Customer Segmentation (RFM)
 
-| Segment | Score Range | Description |
-|---------|-------------|-------------|
-| 🏆 Champions | 10–12 | Recent, frequent, high spenders |
-| 💎 Loyal Customers | 7–9 | Regular buyers with good spending |
-| ⚠️ At Risk | 5–6 | Declining engagement |
-| 🔴 Lost Customers | 3–4 | Haven't purchased recently |
+| Segment      | Description                    |
+| ------------ | ------------------------------ |
+| 🏆 Champions | High-value, frequent customers |
+| 💎 Loyal     | Regular buyers                 |
+| ⚠️ At Risk   | Declining engagement           |
+| 🔴 Lost      | Inactive customers             |
 
 ---
 
-## 🤖 ML Components
+## 📊 Key KPIs
 
-1. **KMeans Clustering**: Groups customers based on standardized RFM features (configurable 2–8 clusters)
-2. **Sales Prediction**: Linear regression trend with 6-month forecast
+* Total Revenue & Profit
+* Total Transactions
+* Unique Customers
+* Average Order Value (AOV)
+* Best Region & Top Category
 
----
-
-## 📊 KPI Metrics
-
-- Total Revenue & Profit
-- Total Transactions
-- Unique Customers
-- Average Order Value (AOV)
-- Top Category & Best Store
-- Best Performing Region
 
 ---
 
-## 🛠️ Technologies
+## 🌐 Deployment
 
-- **Python 3.10+**
-- **Pandas** — Data manipulation
-- **NumPy** — Numerical operations
-- **Plotly** — Interactive visualizations
-- **Streamlit** — Dashboard framework
-- **scikit-learn** — ML (KMeans, LinearRegression)
+This project is deployed using **Streamlit Cloud**.
 
 ---
 
-## 📝 License
+## 🧠 Author
 
-This project is for educational and portfolio purposes.
+**Mude Surendra Naik**
+
+---
+
+## ⭐ Support
+
+If you found this project useful:
+👉 Give it a ⭐ on GitHub
+
+---
